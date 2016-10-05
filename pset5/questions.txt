@@ -1,0 +1,31 @@
+0.  pneumonoultramicroscopicsilicovolcanoconiosis is an example of the longest
+    possible word (45 chars) that can be checked for spelling errors.
+    
+1.  getrusage() returns resource usage measures for either the calling process 
+    (which is the sum of resources used by all threads in the process), 
+    the children of the calling process, or the calling thread, based on 
+    input parameters.
+
+2.  struct rusage has 16 members.
+
+3.  C requires passing structs by reference in functions.
+
+4.  speller.c reads in content from a text file, character by character. If the
+    word contains digits, or is longer than 45 characters, it is ignored. If a 
+    word still exists, the program increments the word counter, and checks the 
+    word for spelling errors using a dictionary that is imported. This program 
+    also records the time it takes to check a word, to load and unload the 
+    dictionary, and to determine the size of the dictionary.
+
+5.  Using fscanf alone doesn't allow us to check for numerical inputs and other 
+    punctuation, which are invalid in the program.
+
+6.  Because word LENGTH and DICTIONARY are declared as constants
+
+7.  I used a hashtable with linked lists. Each node contains a pointer to the word itself, and a pointer to the next node in the list.
+
+8.  The first time it worked successfully, the total runtime was 0.48s.
+
+9.  I improved the hashing function, which significantly decreased total run time (the check function made up the majority of the total run time.)
+
+10. I could not find a way to make the load function more effecient (load makes up 0.05s of the 0.07s total runtime).
