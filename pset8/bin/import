@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+    require '../includes/config.php';
+
+    if ($argc != 2)
+    {
+        exit("error, input path to file \n");
+    }
+    
+    $path = $argv[1];
+    
+    if (file_exists($path) && is_readable($path))
+    {
+        $file = fopen($path, "r");
+        
+        while(! feof($file))
+        {
+            $data[] = fgetcsv($file,0,"\t");
+        }
+        
+       fclose($file);
+       
+       $length = count($data);
+       //var_dump($data);
+        
+        
+        for ($i= 0; $i < $length; $i++)
+        {
+           CS50::query("INSERT into places (country_code, postal_code, place_name, admin_name1, admin_code1, admin_name2,
+           admin_code2, admin_name3, admin_code3, latitude, longitude, accuracy) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+           $data[$i]['0'], $data[$i]['1'], $data[$i]['2'], $data[$i]['3'], $data[$i]['4'], $data[$i]['5'], $data[$i]['6'], 
+           $data[$i]['7'], $data[$i]['8'], $data[$i]['9'], $data[$i]['10'], $data[$i]['11']);
+        }
+    }
+    
+    else
+    {
+        exit("Invalid file path \n");
+    }
+
+?>
